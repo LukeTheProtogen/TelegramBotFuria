@@ -1,3 +1,4 @@
+# Conexão com a API da Pandascore para pegar os jogos da FURIA (CS:GO) e os resultados deles.
 from datetime import datetime, timedelta, timezone # Formatar a data e hora
 from dateutil.parser import parse # Conversor de data, hora e fuso
 from dateutil import parser 
