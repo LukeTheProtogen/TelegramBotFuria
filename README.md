@@ -9,7 +9,7 @@ Vale lembrar que ainda está em Alpha e ainda colocarei alguns acréscimos.
 
 O Deploy do Bot foi feito através do Render!
 
-O bot já está disponível para ser utilizado no Telegram, apenas com algumas limitações tipo a IA (Por se tratar de minha chave da OpenAI, ela já está esgotada)
+O bot já está disponível para ser utilizado no Telegram, apenas com algumas limitações tipo a IA (Por se tratar de minha chave da OpenAI, ela já está esgotada), porém, estou deixando este código para caso alguém queira usar como base de criação para outros bots!
 
 * Procure por @FuriraAppbot para ir direto a ele!
 
