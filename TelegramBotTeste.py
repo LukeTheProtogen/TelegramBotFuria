@@ -4,8 +4,16 @@ from APIConnection import pegar_jogos_furia
 from APIConnection import pegar_jogos_futuros_api
 from APIConnection import pegar_ultimos_resultados_furia
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 TOKEN = os.getenv("Telegram_Bot_Token")  # Aqui fica o token do Bot do Telegram!
+
+print(f"[DEBUG] TOKEN: {TOKEN}")  # <-- ADICIONE ISSO
+
+if not TOKEN:
+    raise ValueError("❌ O token do Bot não foi carregado! Verifique o arquivo .env.")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     keyboard = [
@@ -30,18 +38,18 @@ async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     text = update.message.text 
     entendido = True # Variável que verificar se o Bot entendeu a mensagem do usuário ou não.
 
-     # Se ainda não temos o nome, e estamos aguardando
+     # Se ainda não temos o nome do user, mandar mensagem de boas-vindas
     if context.user_data.get('aguardando_nome'):
         nome = text.split()[0].capitalize()
         context.user_data['nome_usuario'] = nome
         context.user_data['aguardando_nome'] = False
         context.user_data['boas_vindas_enviada'] = True
 
-        await update.message.reply_text(f"FAAAAAALAAAAA {nome}, bem-vindo ao Chatbot da FURIA, aqui você é parte do nosso time FURIA!  irei responder suas dúvidas e status do time em relação aos campeonatos de CS! BORA FURIOSOS!")
+        await update.message.reply_text(f"Faaaala! {nome}, bem-vindo ao Chatbot da FURIA, aqui você é parte do nosso time FURIA!  irei responder suas dúvidas e status do time em relação aos campeonatos de CS! BORA FURIOSOS!")
         await start(update, context)
         return
 
-    # Se ainda não temos o nome, vamos perguntar
+    # Caso ainda não haja o nome do user, perguntar
     if 'nome_usuario' not in context.user_data:
         context.user_data['aguardando_nome'] = True
         await update.message.reply_text("Bem-vindo ao Chatbot da FURIA! Aqui irei responder suas dúvidas e status do time em relação aos campeonatos de CS! BORA FURIOSOS! \n\n " 
